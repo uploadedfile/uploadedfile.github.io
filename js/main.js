@@ -3,7 +3,8 @@ var pickers = {
 	time: document.querySelector('input[type="time"]'),
 	text: document.querySelector('#text'),
 	origen: document.getElementById('origen'),
-	destino: document.getElementById('destino')
+	destino: document.getElementById('destino'),
+	checkbox:document.getElementById('checkbox1'),
 }
 
 
@@ -164,7 +165,7 @@ function sendDateTime () {
 	timestamp.setHours(h || 0, m || 0)
 
 	// var data = timestamp.getTime()+'_'+timestamp.getTimezoneOffset()
-	var data=JSON.stringify({"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave']})
+	var data=JSON.stringify({"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.checkbox.checked})
 	console.log(data)
 	Telegram.WebApp.sendData(data)
 }

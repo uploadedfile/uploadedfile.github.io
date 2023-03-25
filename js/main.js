@@ -139,7 +139,7 @@ function pickHandler () {
 	if(lugares.includes(pickers.origen.value) && lugares.includes(pickers.destino.value) &&pickers.destino.value!=pickers.origen.value){
 		console.log(pickers.origen.value)
 		console.log(pickers.destino.value)
-		var data=JSON.stringify({"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave']})
+		var data=JSON.stringify({"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.checkbox.checked})
 	    console.log(data)
 		console.log('Showing Telegram');		
 		Telegram.WebApp.MainButton.show();

@@ -5,10 +5,11 @@ var pickers = {
 	origen: document.getElementById('origen'),
 	destino: document.getElementById('destino'),
 	checkbox:document.getElementById('checkbox1'),	
-}
-var reserva=false
-if (urlParams.has('reserva')){
-	reserva=true
+};
+var reserva=false;
+const urlParams2 = new URLSearchParams(document.location.search);
+if (urlParams2.has('reserva')){
+	reserva=true;
 		}
 
 const setDefaultValues = (pickers) => {

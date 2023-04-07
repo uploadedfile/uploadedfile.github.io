@@ -5,6 +5,7 @@ var pickers = {
 	origen: document.getElementById('origen'),
 	destino: document.getElementById('destino'),
 	checkbox:document.getElementById('checkbox1'),
+	reserva:false
 }
 
 
@@ -134,12 +135,13 @@ function autocomplete(inp, arr) {
   var data=Date(pickers.date.value);
   console.log(data);
   console.log(pickers.date.value);
+  console.log(pickers.date.reserva);
 function pickHandler () {
 	// let other = e.target.type == 'date' ? 'time' : 'date'
 	if(lugares.includes(pickers.origen.value) && lugares.includes(pickers.destino.value) &&pickers.destino.value!=pickers.origen.value){
 		console.log(pickers.origen.value)
 		console.log(pickers.destino.value)
-		var data=JSON.stringify({"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.checkbox.checked})
+		var data=JSON.stringify({"reserva":pickers.reserva.value,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.checkbox.checked})
 	    console.log(data)
 		console.log('Showing Telegram');		
 		Telegram.WebApp.MainButton.show();
@@ -147,6 +149,7 @@ function pickHandler () {
 	}else{
 		console.log(pickers.origen.value)
 		console.log(pickers.destino.value)
+		console.log(pickers.date.reserva);
 		console.log('Hidding Telegram');
 		Telegram.WebApp.MainButton.hide();
 	}

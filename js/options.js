@@ -2,7 +2,8 @@ const options = {
 	min: false,
 	max: false,
 	hide: false,
-	text: false
+	text: false,
+	reserva: false
 }
 
 function setupOptions () {
@@ -19,6 +20,10 @@ function setupOptions () {
 
 	if (options.hide) {
 		pickers[options.hide].style.display = 'none';
+	}
+	
+	if (options.reserva) {
+		pickers['reserva'] = true;
 	}
 
 	if (options.min) {

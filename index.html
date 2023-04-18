@@ -18,6 +18,15 @@
 			<input type="time" class="inputdatetime">
 			<input autocomplete="off" id="origen" type="text" name="Origen" placeholder="Origen">
 			<input autocomplete="off" id="destino" type="text" name="Destino" placeholder="Destino">
+			<table id="passengerTable">
+				<th id="name" class="passengers">Pasajeros</th>
+				<th id="ci" class="passengers">CI</th>
+				<tr>
+					<td><input type="text" class="passenger" placeholder="Nombre y apellidos"></td>
+					<td><input type="text" class="ci" placeholder="Carnet de identidad"></td>
+				</tr>
+			</table>
+			<input type="button" id="addPassenger" value="+"/>	
 			<input type="checkbox" id="checkbox1" name="exactdate"> <label for="checkbox1">Fecha exacta</label>
 		</section>
 	</main>

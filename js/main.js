@@ -4,14 +4,36 @@ var pickers = {
 	text: document.querySelector('#text'),
 	origen: document.getElementById('origen'),
 	destino: document.getElementById('destino'),
-	checkbox:document.getElementById('checkbox1'),	
+	checkbox:document.getElementById('checkbox1'),
+	passengersList:[]	
 };
 var reserva=false;
 const urlParams2 = new URLSearchParams(document.location.search);
 if (urlParams2.has('reserva')){
-	reserva=true;
+	reserva=true;	
+	}else{
+	document.getElementById('passengerTable').style.display = "none";
+	}
+document.getElementById("addPassenger").onclick = function() {
+			var tbody = document.getElementById("passengerTable").getElementsByTagName('tbody')[0];
+			var input = document.createElement("input");			
+			var input2 = document.createElement("input");	
+			input.classList.add("passenger");
+			input.type = "text";
+			input.placeholder="Nombre y apellidos"
+			input2.classList.add("ci");
+			input2.type = "text";
+			input2.placeholder="Carnet de Identidad"					
+			var tr = document.createElement("tr");			
+			var td = document.createElement("td");
+			var td2 = document.createElement("td");
+			td.appendChild(input);
+			td2.appendChild(input2);
+			tr.appendChild(td);
+			tr.appendChild(td2);
+			tbody.appendChild(tr);
+			document.getElementById('passengerTable').addEventListener('input', pickHandler)
 		}
-
 const setDefaultValues = (pickers) => {
 	const current = new Date();
 	
@@ -30,6 +52,7 @@ const setDefaultValues = (pickers) => {
 setDefaultValues(pickers);
 pickers.origen.addEventListener('input', pickHandler)
 pickers.destino.addEventListener('input', pickHandler)
+document.getElementById('passengerTable').addEventListener('input', pickHandler)
 function autocomplete(inp, arr) {
 	/*the autocomplete function takes two arguments,
 	the text field element and an array of possible autocompleted values:*/
@@ -141,10 +164,29 @@ function autocomplete(inp, arr) {
   console.log(reserva);
 function pickHandler () {
 	// let other = e.target.type == 'date' ? 'time' : 'date'
+	if(reserva==true){
+		pickers.passengersList=[]
+		// trs = document.querySelectorAll('#passengerTable tr');
+		var passengers=Array.from(document.getElementsByClassName("passenger"))
+		var cis=Array.from(document.getElementsByClassName("ci"))		
+		console.log(cis);
+		console.log(passengers);		
+		passengers.forEach(function (passenger, i) {
+			ci=cis[i]
+			console.log(passenger);
+			console.log(ci);
+			if(ci.value.trim().length==11 && passenger.value.trim()!='' ){
+				pickers.passengersList.push([{'passenger':passenger.value.trim(),'ci':ci.value.trim()}])
+			}
+			
+			console.log('%d: %s',i,passenger);
+		});	
+	 	console.log(pickers.passengersList)
+	}
 	if(lugares.includes(pickers.origen.value) && lugares.includes(pickers.destino.value) &&pickers.destino.value!=pickers.origen.value){
 		console.log(pickers.origen.value)
 		console.log(pickers.destino.value)
-		var data=JSON.stringify({"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.checkbox.checked})
+		var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.checkbox.checked})
 	    console.log(data)
 		console.log('Showing Telegram');		
 		Telegram.WebApp.MainButton.show();
@@ -171,7 +213,7 @@ function sendDateTime () {
 	timestamp.setHours(h || 0, m || 0)
 
 	// var data = timestamp.getTime()+'_'+timestamp.getTimezoneOffset()
-	var data=JSON.stringify({"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.checkbox.checked})
+	var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.checkbox.checked})
 	console.log(data)
 	Telegram.WebApp.sendData(data)
 }

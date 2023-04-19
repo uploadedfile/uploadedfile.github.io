@@ -176,7 +176,7 @@ function pickHandler () {
 			console.log(passenger);
 			console.log(ci);
 			if(ci.value.trim().length==11 && passenger.value.trim()!='' ){
-				pickers.passengersList.push([{'passenger':passenger.value.trim(),'ci':ci.value.trim()}])
+				pickers.passengersList.push({'nombre':passenger.value.trim(),'dni':ci.value.trim()})
 			}
 			
 			console.log('%d: %s',i,passenger);

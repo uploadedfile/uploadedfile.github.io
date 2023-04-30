@@ -214,7 +214,7 @@ function sendDateTime () {
 	timestamp.setHours(h || 0, m || 0)
 
 	// var data = timestamp.getTime()+'_'+timestamp.getTimezoneOffset()
-	var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.radiovalue})
+	var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue})
 	console.log(data)
 	Telegram.WebApp.sendData(data)
 }

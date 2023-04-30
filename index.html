@@ -26,8 +26,25 @@
 					<td><input type="text" class="ci" placeholder="Carnet de identidad"></td>
 				</tr>
 			</table>
-			<input type="button" id="addPassenger" value="+"/>	
-			<input type="checkbox" id="checkbox1" name="exactdate"> <label for="checkbox1">Fecha exacta</label>
+			<input type="button" id="addPassenger" value="+"/>
+			
+				<div>
+					<fieldset title="El rango tomará dias anteriores"><legend >Fecha</legend>
+					<label for="radio1"><input type="radio" id="radio1" name="exactdate" value="any" checked="checked"> Cualquier Fecha |</label>	
+					<label for="radio2"><input type="radio" id="radio2" name="exactdate" value="exact"> Fecha exacta |</label>
+					<label for="radio3"><input type="radio" id="radio3" name="exactdate" value="two"> Rango de 2 días |</label>
+					<label for="radio4"><input type="radio" id="radio4" name="exactdate" value="three"> Rango de 3 días</label>
+					</fieldset>
+				</div>
+				<div>
+					<fieldset title="Tren incluye al tren con aire acondicionado"><legend>Medio de Transporte</legend>
+					<label for="radiot1"><input type="radio" id="radiot1" name="exacttrans" value="any" checked="checked"> Cualquier Medio |</label>
+					<label for="radiot2"><input type="radio" id="radiot2" name="exacttrans" value="bus"> Guagua |</label>
+					<label for="radiot3"><input type="radio" id="radiot3" name="exacttrans" value="train"> Tren |</label>
+					<label for="radiot4"><input type="radio" id="radiot4" name="exacttrans" value="trainac"> Tren AC</label>
+					</fieldset>			
+				</div>
+		
 		</section>
 	</main>
 	<footer id = "page-footer">

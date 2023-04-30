@@ -4,8 +4,9 @@ var pickers = {
 	text: document.querySelector('#text'),
 	origen: document.getElementById('origen'),
 	destino: document.getElementById('destino'),
-	checkbox:document.getElementById('checkbox1'),
-	passengersList:[]	
+	radiovalue:document.querySelector('input[name="exactdate"]:checked').value,
+	transportvalue:document.querySelector('input[name="exacttrans"]:checked').value,
+	passengersList:[]
 };
 var reserva=false;
 const urlParams2 = new URLSearchParams(document.location.search);
@@ -169,8 +170,6 @@ function pickHandler () {
 		// trs = document.querySelectorAll('#passengerTable tr');
 		var passengers=Array.from(document.getElementsByClassName("passenger"))
 		var cis=Array.from(document.getElementsByClassName("ci"))		
-		console.log(cis);
-		console.log(passengers);		
 		passengers.forEach(function (passenger, i) {
 			ci=cis[i]
 			console.log(passenger);
@@ -186,7 +185,9 @@ function pickHandler () {
 	if(lugares.includes(pickers.origen.value) && lugares.includes(pickers.destino.value) &&pickers.destino.value!=pickers.origen.value){
 		console.log(pickers.origen.value)
 		console.log(pickers.destino.value)
-		var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.checkbox.checked})
+		pickers.radiovalue=document.querySelector('input[name="exactdate"]:checked').value
+		pickers.transportvalue=document.querySelector('input[name="exacttrans"]:checked').value
+		var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue})
 	    console.log(data)
 		console.log('Showing Telegram');		
 		Telegram.WebApp.MainButton.show();
@@ -213,7 +214,7 @@ function sendDateTime () {
 	timestamp.setHours(h || 0, m || 0)
 
 	// var data = timestamp.getTime()+'_'+timestamp.getTimezoneOffset()
-	var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.checkbox.checked})
+	var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.radiovalue})
 	console.log(data)
 	Telegram.WebApp.sendData(data)
 }

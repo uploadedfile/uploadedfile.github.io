@@ -182,12 +182,12 @@ function pickHandler () {
 		});	
 	 	console.log(pickers.passengersList)
 	}
-	if(lugares.includes(pickers.origen.value) && lugares.includes(pickers.destino.value) &&pickers.destino.value!=pickers.origen.value){
+	if(lugares.includes(pickers.origen.value.trim()) && lugares.includes(pickers.destino.value) &&pickers.destino.value!=pickers.origen.value.trim()){
 		console.log(pickers.origen.value)
 		console.log(pickers.destino.value)
 		pickers.radiovalue=document.querySelector('input[name="exactdate"]:checked').value
 		pickers.transportvalue=document.querySelector('input[name="exacttrans"]:checked').value
-		var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue})
+		var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value.trim())['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value.trim())['clave'],"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue})
 	    console.log(data)
 		console.log('Showing Telegram');		
 		Telegram.WebApp.MainButton.show();
@@ -214,7 +214,7 @@ function sendDateTime () {
 	timestamp.setHours(h || 0, m || 0)
 
 	// var data = timestamp.getTime()+'_'+timestamp.getTimezoneOffset()
-	var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value)['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value)['clave'],"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue})
+	var data=JSON.stringify({"passengers":pickers.passengersList,"reserva":reserva,"date":pickers.date.value,"destino":places.find(element => element['nombre']==pickers.destino.value.trim())['clave'],"origen":places.find(element => element['nombre']==pickers.origen.value.trim())['clave'],"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue})
 	console.log(data)
 	Telegram.WebApp.sendData(data)
 }

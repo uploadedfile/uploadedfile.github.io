@@ -182,7 +182,7 @@ function pickHandler () {
 		});	
 	 	console.log(pickers.passengersList)
 	}
-	if(lugares.includes(pickers.origen.value.trim()) && lugares.includes(pickers.destino.value) &&pickers.destino.value!=pickers.origen.value.trim()){
+	if(lugares.includes(pickers.origen.value.trim()) && lugares.includes(pickers.destino.value.trim()) &&pickers.destino.value!=pickers.origen.value.trim()){
 		console.log(pickers.origen.value)
 		console.log(pickers.destino.value)
 		pickers.radiovalue=document.querySelector('input[name="exactdate"]:checked').value

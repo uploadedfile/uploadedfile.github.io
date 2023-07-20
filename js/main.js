@@ -174,7 +174,7 @@ function pickHandler () {
 			ci=cis[i]
 			console.log(passenger);
 			console.log(ci);
-			if(ci.value.trim().length==11 && passenger.value.trim()!='' ){
+			if(ci.value.trim().length==11 && passenger.value.trim()!='' && isNumber(ci.value.trim()) ){
 				pickers.passengersList.push({'nombre':passenger.value.trim(),'dni':ci.value.trim()})
 			}
 			
@@ -182,7 +182,7 @@ function pickHandler () {
 		});	
 	 	console.log(pickers.passengersList)
 	}
-	if(lugares.includes(pickers.origen.value.trim()) && lugares.includes(pickers.destino.value.trim()) &&pickers.destino.value!=pickers.origen.value.trim()){
+	if(lugares.includes(pickers.origen.value.trim()) && lugares.includes(pickers.destino.value.trim()) &&pickers.destino.value!=pickers.origen.value.trim()&& pickers.passengersList.every(function(element, index){element['dni'].length==11&&!isNaN(element['dni'])})){
 		console.log(pickers.origen.value)
 		console.log(pickers.destino.value)
 		pickers.radiovalue=document.querySelector('input[name="exactdate"]:checked').value

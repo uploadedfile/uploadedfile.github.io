@@ -23,7 +23,7 @@ document.getElementById("addPassenger").onclick = function() {
 			input.type = "text";
 			input.placeholder="Nombre y apellidos"
 			input2.classList.add("ci");
-			input2.type = "text";
+			input2.type = "number";
 			input2.placeholder="Carnet de Identidad"					
 			var tr = document.createElement("tr");			
 			var td = document.createElement("td");

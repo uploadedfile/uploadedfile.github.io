@@ -70,7 +70,7 @@ function autocomplete(inp, arr) {
 		a.setAttribute("id", this.id + "autocomplete-list");
 		a.setAttribute("class", "autocomplete-items");
 		/*append the DIV element as a child of the autocomplete container:*/
-		atb=document.getElementsByClassName("autocompletetextbox")
+		atb=document.getElementsByClassName("autocompletetextbox")[0];
 		atb.appendChild(a);
 		/*for each item in the array...*/
 		for (i = 0; i < arr.length; i++) {

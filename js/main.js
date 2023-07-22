@@ -66,12 +66,12 @@ function autocomplete(inp, arr) {
 		if (!val) { return false;}
 		currentFocus = -1;
 		/*create a DIV element that will contain the items (values):*/
-		// a = document.createElement("DIV");
-		a=document.getElementsByClassName("autocomplete-items")
+		a = document.createElement("DIV");
 		a.setAttribute("id", this.id + "autocomplete-list");
 		a.setAttribute("class", "autocomplete-items");
 		/*append the DIV element as a child of the autocomplete container:*/
-		// this.parentNode.appendChild(a);
+		atb=document.getElementsByClassName("autocompletetextbox")
+		atb.appendChild(a);
 		/*for each item in the array...*/
 		for (i = 0; i < arr.length; i++) {
 		  /*check if the item starts with the same letters as the text field value:*/

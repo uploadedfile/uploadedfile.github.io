@@ -35,6 +35,14 @@ document.getElementById("addPassenger").onclick = function() {
 			tbody.appendChild(tr);
 			document.getElementById('passengerTable').addEventListener('input', pickHandler)
 		}
+		document.getElementById("removePassenger").onclick = function() {
+			var tbody = document.getElementById("passengerTable").getElementsByTagName('tbody')[0];			
+			if(tbody.children.length >2){
+				tbody.removeChild(tbody.lastElementChild);
+			}
+			
+			document.getElementById('passengerTable').addEventListener('input', pickHandler)
+		}
 const setDefaultValues = (pickers) => {
 	const current = new Date();
 	

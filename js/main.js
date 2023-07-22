@@ -23,7 +23,7 @@ document.getElementById("addPassenger").onclick = function() {
 			input.type = "text";
 			input.placeholder="Nombre y apellidos"
 			input2.classList.add("ci");
-			input2.type = "number";
+			input2.type = "text";
 			input2.placeholder="Carnet de Identidad"					
 			var tr = document.createElement("tr");			
 			var td = document.createElement("td");
@@ -182,7 +182,7 @@ function pickHandler () {
 		});	
 	 	console.log(pickers.passengersList)
 	}
-	if(lugares.includes(pickers.origen.value.trim()) && lugares.includes(pickers.destino.value.trim()) &&pickers.destino.value!=pickers.origen.value.trim()&& pickers.passengersList.every(function(element, index){element['dni'].length==11&&element['nombre']!=''&&!isNaN(element['dni'])})){
+	if(lugares.includes(pickers.origen.value.trim()) && lugares.includes(pickers.destino.value.trim()) &&pickers.destino.value!=pickers.origen.value.trim()){
 		console.log(pickers.origen.value)
 		console.log(pickers.destino.value)
 		pickers.radiovalue=document.querySelector('input[name="exactdate"]:checked').value

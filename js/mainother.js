@@ -69,6 +69,9 @@ document.getElementById('username').addEventListener('input', pickHandler)
 document.getElementById('password').addEventListener('input', pickHandler)
 document.getElementById('passname').addEventListener('input', pickHandler)
 document.getElementById('passci').addEventListener('input', pickHandler)
+// document.getElementById('ida').addEventListener('input', pickHandler)
+// document.getElementById('passci').addEventListener('input', pickHandler)
+// document.getElementById('passci').addEventListener('input', pickHandler)
 // function autocomplete(inp, arr) {
 // 	/*the autocomplete function takes two arguments,
 // 	the text field element and an array of possible autocompleted values:*/
@@ -162,10 +165,10 @@ document.getElementById('passci').addEventListener('input', pickHandler)
 // 	  }
 // 	}
 // 	/*execute a function when someone clicks in the document:*/
-// 	document.addEventListener("click", function (e) {
-// 		closeAllLists(e.target);
-// 		pickHandler()
-// 	});	
+	document.addEventListener("click", function (e) {
+		// closeAllLists(e.target);
+		pickHandler()
+	});	
 //   }
   
   /*An array containing all the country names in the world:*/
@@ -225,6 +228,7 @@ function pickHandler () {
 }
 
 function sendDateTime () {
+	// pickHandler()
 	var timestamp = pickers.date.value
 		? new Date(pickers.date.value)
 		: new Date()
@@ -240,7 +244,6 @@ function sendDateTime () {
 
 function init () {
 	setupOptions()
-
 	Telegram.WebApp.ready()
 	Telegram.WebApp.MainButton
 		.setText('Vigilar Viaje')

@@ -6,6 +6,7 @@ var pickers = {
 	// destino: document.getElementById('destino'),
 	username: document.getElementById('username').value,
 	password: document.getElementById('password').value,
+	route: document.querySelector('input[name="ida"]:checked').value,
 	viajevalue: document.querySelector('input[name="ida"]:checked').value,
 	radiovalue:document.querySelector('input[name="exactdate"]:checked').value,
 	transportvalue:document.querySelector('input[name="exacttrans"]:checked').value,
@@ -13,10 +14,13 @@ var pickers = {
 	passengerdni:""
 };
 var reserva=false;
+
 const urlParams2 = new URLSearchParams(document.location.search);
 if (urlParams2.has('reserva')){
 	reserva=true;	
+	// document.getElementById("withuser").checked=true
 	}else{
+	// document.getElementById("withuser").checked=false	
 	document.getElementById('passengerTable').style.display = "none";
 	}
 // document.getElementById("addPassenger").onclick = function() {
@@ -168,7 +172,7 @@ document.getElementById('passci').addEventListener('input', pickHandler)
 	document.addEventListener("click", function (e) {
 		// closeAllLists(e.target);
 		pickHandler()
-	});	
+	});		
 //   }
   
   /*An array containing all the country names in the world:*/
@@ -183,6 +187,15 @@ document.getElementById('passci').addEventListener('input', pickHandler)
   console.log(pickers.date.value);
   console.log(reserva);
 function pickHandler () {
+	var wchecked=document.getElementById('withuser').checked
+	console.log(wchecked);
+	if(wchecked==true){
+		reserva=true
+		document.getElementById('passengerTable').style.display = "initial";		
+	}else{
+		reserva=false
+		document.getElementById('passengerTable').style.display = "none";
+	}
 	// let other = e.target.type == 'date' ? 'time' : 'date'
 	username=document.getElementById('username')
 	password=document.getElementById('password')
@@ -191,28 +204,49 @@ function pickHandler () {
 		var passengers=Array.from(document.getElementsByClassName("passenger"))
 		var cis=Array.from(document.getElementsByClassName("ci"))	
 		
-			ci=cis[0]
-			passenger=passengers[0]
+			var ci=cis[0]
+			var passenger=passengers[0]
 			console.log(passenger.value);
 			console.log(ci.value);
 			if(ci.value.trim().length==11 && passenger.value.trim()!='' && !isNaN(ci.value.trim()) ){
-				pickers.passengersname=passenger.value.trim(),
-				pickers.passengersdni=ci.value.trim()
+				pickers.passengername=passenger.value.trim(),
+				pickers.passengerdni=ci.value.trim()
 			}
 		;
-	}
-	if(ci.value.trim().length==11 && passenger.value.trim()!='' && !isNaN(ci.value.trim()) && username.value.trim()!='' && password.value.trim()!=''){
-		// console.log(pickers.origen.value)
-		// console.log(pickers.destino.value)
-		pickers.username= username.value,
-		pickers.password= password.value,
-		pickers.viajevalue=document.querySelector('input[name="ida"]:checked').value
-		pickers.radiovalue=document.querySelector('input[name="exactdate"]:checked').value
-		pickers.transportvalue=document.querySelector('input[name="exacttrans"]:checked').value
-		var data=JSON.stringify({"username":pickers.username,"password":pickers.password,"nombre":pickers.passengersname,"dni":pickers.passengersdni,"reserva":reserva,"date":pickers.date.value,"type":pickers.viajevalue,"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue})
-		console.log(data)
-		console.log('Showing Telegram');		
-		Telegram.WebApp.MainButton.show();
+		if(ci.value.trim().length==11 && passenger.value.trim()!='' && !isNaN(ci.value.trim()) && username.value.trim()!='' && password.value.trim()!=''){
+			// console.log(pickers.origen.value)
+			// console.log(pickers.destino.value)
+			pickers.username= username.value,
+			pickers.password= password.value,
+			pickers.viajevalue=document.querySelector('input[name="ida"]:checked').value
+			pickers.radiovalue=document.querySelector('input[name="exactdate"]:checked').value
+			pickers.transportvalue=document.querySelector('input[name="exacttrans"]:checked').value
+			var data=JSON.stringify({"username":pickers.username,"password":pickers.password,"nombre":pickers.passengername,"dni":pickers.passengerdni,"reserva":reserva,"date":pickers.date.value,"type":pickers.viajevalue,"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue})
+			console.log(data)
+			console.log('Showing Telegram');		
+			Telegram.WebApp.MainButton.show();}else{
+				// console.log(pickers.origen.value)
+				// console.log(pickers.destino.value)
+				console.log(reserva);
+				console.log('Hidding Telegram');
+				Telegram.WebApp.MainButton.hide();
+			}
+	}else{
+		pickers.passengersname="";
+		pickers.passengersdni="";
+		if(username.value.trim()!='' && password.value.trim()!=''){
+			// console.log(pickers.origen.value)
+			// console.log(pickers.destino.value)
+			pickers.username= username.value,
+			pickers.password= password.value,
+			pickers.route=document.querySelector('input[name="route"]:checked').value
+			pickers.viajevalue=document.querySelector('input[name="ida"]:checked').value
+			pickers.radiovalue=document.querySelector('input[name="exactdate"]:checked').value
+			pickers.transportvalue=document.querySelector('input[name="exacttrans"]:checked').value
+			var data=JSON.stringify({"username":pickers.username,"password":pickers.password,"nombre":pickers.passengername,"dni":pickers.passengerdni,"reserva":reserva,"date":pickers.date.value,"type":pickers.viajevalue,"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue,"route":pickers.route})
+			console.log(data)
+			console.log('Showing Telegram');		
+			Telegram.WebApp.MainButton.show();	
 
 	}else{
 		// console.log(pickers.origen.value)
@@ -223,9 +257,8 @@ function pickHandler () {
 	}
 	// if (options.hide !== other && pickers[other].value == '') {
 	// 	return (false)
-	// }
-		
-}
+	// }		
+	}}
 
 function sendDateTime () {
 	// pickHandler()
@@ -237,7 +270,7 @@ function sendDateTime () {
 	timestamp.setHours(h || 0, m || 0)
 
 	// var data = timestamp.getTime()+'_'+timestamp.getTimezoneOffset()
-	var data=JSON.stringify({"username":pickers.username,"password":pickers.password,"nombre":pickers.passengersname,"dni":pickers.passengersdni,"reserva":reserva,"date":pickers.date.value,"type":pickers.viajevalue,"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue})
+	var data=JSON.stringify({"username":pickers.username,"password":pickers.password,"nombre":pickers.passengersname,"dni":pickers.passengersdni,"reserva":reserva,"date":pickers.date.value,"type":pickers.viajevalue,"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue,"route":pickers.route})
 	console.log(data)
 	Telegram.WebApp.sendData(data)
 }

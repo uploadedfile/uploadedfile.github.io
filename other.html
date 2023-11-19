@@ -31,23 +31,27 @@
 			</table>
 			<!-- <div><input type="button" id="addPassenger" value="+"/>
 			<input type="button" id="removePassenger" value="–"/></div> -->
-			<div>
+			<!-- <div><label><input id="withuser" type="checkbox" checked>Con viajero</label></div> -->
+			<div>				
 				<fieldset title="Elegir si es de ida o vuelta"><legend >Viaje</legend>
-				<label for="radioi1"><input type="radio" id="radioi1" name="ida" value="ida" checked="checked"> Ida |</label>	
-				<label for="radioi2"><input type="radio" id="radioi2" name="ida" value="regreso" > Regreso </label>
-				
+					<label for="radioi1"><input type="radio" id="radioi1" name="ida" value="ida" checked> Ida |</label>	
+					<label for="radioi2"><input type="radio" id="radioi2" name="ida" value="regreso" > Regreso </label>				
+				</fieldset>
+				<fieldset title="Elegir ruta primaria o secundaria"><legend >Ruta</legend>
+				<label for="radior1"><input type="radio" id="radior1" name="route" value="1" checked> Primaria |</label>	
+				<label for="radior2"><input type="radio" id="radior2" name="route" value="2" > Secundaria </label>				
 				</fieldset>
 				<div>
 					<fieldset title="El rango tomará dias anteriores"><legend >Fecha</legend>
 					<label for="radio1"><input type="radio" id="radio1" name="exactdate" value="any" > Cualquier Fecha |</label>	
-					<label for="radio2"><input type="radio" id="radio2" name="exactdate" value="exact" checked="checked"> Fecha exacta |</label>
+					<label for="radio2"><input type="radio" id="radio2" name="exactdate" value="exact" checked> Fecha exacta |</label>
 					<label for="radio3"><input type="radio" id="radio3" name="exactdate" value="two"> Rango de 2 días |</label>
 					<label for="radio4"><input type="radio" id="radio4" name="exactdate" value="three"> Rango de 3 días</label>
 					</fieldset>
 				</div>
 				<div>
 					<fieldset title="Tren incluye al tren con aire acondicionado"><legend>Medio de Transporte</legend>
-					<label for="radiot1"><input type="radio" id="radiot1" name="exacttrans" value="any" checked="checked"> Cualquier Medio |</label>
+					<label for="radiot1"><input type="radio" id="radiot1" name="exacttrans" value="any" checked> Cualquier Medio |</label>
 					<label for="radiot2"><input type="radio" id="radiot2" name="exacttrans" value="bus"> Guagua |</label>
 					<label for="radiot3"><input type="radio" id="radiot3" name="exacttrans" value="train"> Tren |</label>
 					<label for="radiot4"><input type="radio" id="radiot4" name="exacttrans" value="trainac"> Tren AC</label>

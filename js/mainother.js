@@ -6,7 +6,7 @@ var pickers = {
 	// destino: document.getElementById('destino'),
 	username: document.getElementById('username').value,
 	password: document.getElementById('password').value,
-	route: document.querySelector('input[name="ida"]:checked').value,
+	route: document.querySelector('input[name="route"]:checked').value,
 	viajevalue: document.querySelector('input[name="ida"]:checked').value,
 	radiovalue:document.querySelector('input[name="exactdate"]:checked').value,
 	transportvalue:document.querySelector('input[name="exacttrans"]:checked').value,
@@ -218,6 +218,7 @@ function pickHandler () {
 			// console.log(pickers.destino.value)
 			pickers.username= username.value,
 			pickers.password= password.value,
+			pickers.route=document.querySelector('input[name="route"]:checked').value
 			pickers.viajevalue=document.querySelector('input[name="ida"]:checked').value
 			pickers.radiovalue=document.querySelector('input[name="exactdate"]:checked').value
 			pickers.transportvalue=document.querySelector('input[name="exacttrans"]:checked').value
@@ -270,7 +271,7 @@ function sendDateTime () {
 	timestamp.setHours(h || 0, m || 0)
 
 	// var data = timestamp.getTime()+'_'+timestamp.getTimezoneOffset()
-	var data=JSON.stringify({"username":pickers.username,"password":pickers.password,"nombre":pickers.passengersname,"dni":pickers.passengersdni,"reserva":reserva,"date":pickers.date.value,"type":pickers.viajevalue,"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue,"route":pickers.route})
+	var data=JSON.stringify({"username":pickers.username,"password":pickers.password,"nombre":pickers.passengername,"dni":pickers.passengerdni,"reserva":reserva,"date":pickers.date.value,"type":pickers.viajevalue,"exactdate":pickers.radiovalue,"transporte":pickers.transportvalue,"route":pickers.route})
 	console.log(data)
 	Telegram.WebApp.sendData(data)
 }

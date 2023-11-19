@@ -18,9 +18,9 @@ var reserva=false;
 const urlParams2 = new URLSearchParams(document.location.search);
 if (urlParams2.has('reserva')){
 	reserva=true;	
-	// document.getElementById("withuser").checked=true
+	document.getElementById("withuser").checked=true
 	}else{
-	// document.getElementById("withuser").checked=false	
+	document.getElementById("withuser").checked=false	
 	document.getElementById('passengerTable').style.display = "none";
 	}
 // document.getElementById("addPassenger").onclick = function() {

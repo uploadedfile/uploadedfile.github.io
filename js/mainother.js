@@ -233,8 +233,8 @@ function pickHandler () {
 				Telegram.WebApp.MainButton.hide();
 			}
 	}else{
-		pickers.passengersname="";
-		pickers.passengersdni="";
+		pickers.passengername="";
+		pickers.passengerdni="";
 		if(username.value.trim()!='' && password.value.trim()!=''){
 			// console.log(pickers.origen.value)
 			// console.log(pickers.destino.value)

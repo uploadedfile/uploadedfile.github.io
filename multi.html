@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DateTimePicker</title>
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/footer.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+	<main class = "page-main">
+		<section class = "page-main-selectDate">
+			<h2 id="text">DATOS DEL VIAJE:</h2>
+			<input type="date" class="inputdatetime">
+			<input type="time" class="inputdatetime">
+			<label>Usuario: <input type="text" id="username"></label>
+			<label>Contraseña: <input type="password" id="password"></label>
+			<input autocomplete="off" id="origen" type="text" name="Origen" placeholder="Origen">
+			<input autocomplete="off" id="destino" type="text" name="Destino" placeholder="Destino">
+			<div class="autocompletetextbox"></div>
+			<table id="passengerTable">
+				<th id="name" class="passengers">Pasajero</th>
+				<th id="ci" class="passengers">CI</th>
+				<tr>
+					<td><input type="text" id="passname" class="passenger" placeholder="Nombre y apellidos"></td>
+					<td><input type="text" id="passci" class="ci" placeholder="Carnet de identidad"></td>
+				</tr>
+			</table>
+			<!-- <div><input type="button" id="addPassenger" value="+"/>
+			<input type="button" id="removePassenger" value="–"/></div> -->
+			<div><label><input id="withuser" type="checkbox" checked>Con viajero</label></div>
+			<div>	
+				
+				<div>
+					<fieldset title="El rango tomará dias posteriores"><legend >Fecha</legend>
+					<label for="radio1"><input type="radio" id="radio1" name="exactdate" value="any" > Cualquier Fecha |</label>	
+					<label for="radio2"><input type="radio" id="radio2" name="exactdate" value="exact" checked> Fecha exacta |</label>
+					<label for="radio3"><input type="radio" id="radio3" name="exactdate" value="two"> Rango de 2 días |</label>
+					<label for="radio4"><input type="radio" id="radio4" name="exactdate" value="three"> Rango de 3 días</label>
+					</fieldset>
+				</div>
+				<div>
+					<fieldset title="Tren incluye al tren con aire acondicionado"><legend>Medio de Transporte</legend>
+					<label for="radiot1"><input type="radio" id="radiot1" name="exacttrans" value="any" checked> Cualquier Medio |</label>
+					<label for="radiot2"><input type="radio" id="radiot2" name="exacttrans" value="bus"> Guagua |</label>
+					<label for="radiot3"><input type="radio" id="radiot3" name="exacttrans" value="train"> Tren |</label>
+					<label for="radiot4"><input type="radio" id="radiot4" name="exacttrans" value="trainac"> Tren AC</label>
+					<label for="radiot5"><input type="radio" id="radiot5" name="exacttrans" value="clima"> Medio con AC</label>
+					</fieldset>			
+				</div>
+		
+		</section>
+	</main>
+	<footer id = "page-footer">
+		<span class="madewithlove">
+			<p>Made with <i class="fa fa-heart pulse"></i> by <a href="https://github.com/Expented/tgdtp" target="_blank">Expented</a></p>
+		</span>
+	</footer>
+	<script src="./js/options.js"></script>
+	<script src="./js/mainmulti.js"></script>
+</body>
+</html>
